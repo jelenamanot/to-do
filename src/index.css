@@ -67,6 +67,7 @@ h3 {
   font-size: 16px;
   display: block;
   text-align: left;
+  margin-bottom: 5px;
 }
 
 .list-item {
@@ -79,4 +80,7 @@ h3 {
   cursor: pointer;
   float: right;
   padding-left: 5px;
+}
+.btn-danger {
+  margin-top: 15px;
 }

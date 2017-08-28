@@ -1,4 +1,4 @@
-import { ADD_TODO, DELETE_TODO } from '../constants';
+import { ADD_TODO, DELETE_TODO, CLEAR_TODOS } from '../constants';
 
 const todo = (action) => {
   return {
@@ -23,6 +23,9 @@ const todos = (state = [], action) => {
       return todos;
     case DELETE_TODO:
       todos = removeById(state, action.id);
+      return todos;
+    case CLEAR_TODOS:
+      todos = [];
       return todos;
     default:
       return state;

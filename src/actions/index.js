@@ -1,4 +1,4 @@
-import { ADD_TODO, DELETE_TODO } from '../constants';
+import { ADD_TODO, DELETE_TODO, CLEAR_TODOS } from '../constants';
 
 // ------ ADD TO DO  ------
 export const addToDo = (text) => {
@@ -6,7 +6,6 @@ export const addToDo = (text) => {
     type: ADD_TODO,
     text
   }
-  console.log('action in addToDo', action);
   return action;
 }
 
@@ -16,6 +15,12 @@ export const deleteToDo = (id) => {
     type: DELETE_TODO,
     id
   }
-  console.log('action in delete', action);
   return action;
+}
+
+// ------ CLEAR TO DOS  ------
+export const clearToDos = () => {
+  return {
+    type: CLEAR_TODOS
+  }
 }

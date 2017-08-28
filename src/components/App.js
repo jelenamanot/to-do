@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addToDo, deleteToDo } from '../actions';
+import { addToDo, deleteToDo, clearToDos } from '../actions';
 
 
 class App extends Component {
@@ -55,6 +55,17 @@ class App extends Component {
           );
         })
       }
+      {
+          this.props.todos.length >= 1 
+          ? 
+          <button
+            className="btn btn-danger"
+            onClick={ () => this.props.clearToDos() }
+          >
+            CLEAR ALL
+          </button>
+          : <p></p>
+      }
       </ul>
     );
   }
@@ -107,4 +118,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps, {addToDo, deleteToDo})(App);
+export default connect(mapStateToProps, {addToDo, deleteToDo, clearToDos})(App);
