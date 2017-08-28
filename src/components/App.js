@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addToDo } from '../actions';
+import { addToDo, deleteToDo } from '../actions';
 
 
 class App extends Component {
@@ -13,19 +13,23 @@ class App extends Component {
   }
 
 
-  // actions/index.js
+  // -------- actions/index.js --------
   addToDo() {
     if(this.state.text === '') {
       alert('Please fill in the form completely.')
     }
     else {
       this.props.addToDo(this.state.text);
-      console.log(this.state);
+      document.getElementById('main-input').value = '';
     }
-
-
   }
-  
+
+  deleteToDo(id) {
+    this.props.deleteToDo(id);
+  }
+  // -------- end actions/index.js --------
+
+
   renderToDos() {
     const { todos } = this.props;
 
@@ -34,8 +38,19 @@ class App extends Component {
       {
         todos.map(todo => {
           return(
-            <li key={todo.id} className="list-group-item">
-              {todo.text}
+            <li key={todo.id} className="list-group-item li-todo">
+
+              <div className="list-item">
+                {todo.text}
+              </div>
+
+              <div 
+                className="list-item btn-delete"
+                onClick={ () => this.deleteToDo(todo.id) }
+              >
+                &#x2715;
+              </div>
+
             </li>
           );
         })
@@ -52,13 +67,14 @@ class App extends Component {
         <div className="form todo-form">
           <div className="form-group">
             <input 
+              id="main-input"
               className="form-control input-style"
               placeholder="I have to..."
               onChange={ event => this.setState({ text: event.target.value })}
               onKeyPress = {
                 event => {
                   if(event.key === 'Enter') {
-                    this.addToDo()
+                    this.addToDo();
                   }
                 }
               }
@@ -91,4 +107,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps, {addToDo})(App);
+export default connect(mapStateToProps, {addToDo, deleteToDo})(App);

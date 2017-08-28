@@ -46,6 +46,7 @@ h3 {
 }
 
 .input-style {
+  margin: 0 auto;
   width: 300px;
   margin-top: 15px;
   border: 1px solid var(--main-color);
@@ -60,4 +61,22 @@ h3 {
 /* RENDER */
 .render-todos {
   margin-top: 30px;
+}
+
+.li-todo {
+  font-size: 16px;
+  display: block;
+  text-align: left;
+}
+
+.list-item {
+  display: inline-block;
+}
+
+.btn-delete {
+  color: var(--main-color);
+  font-weight: 700;
+  cursor: pointer;
+  float: right;
+  padding-left: 5px;
 }

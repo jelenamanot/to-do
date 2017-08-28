@@ -1,4 +1,4 @@
-import { ADD_TODO } from '../constants';
+import { ADD_TODO, DELETE_TODO } from '../constants';
 
 const todo = (action) => {
   return {
@@ -7,13 +7,22 @@ const todo = (action) => {
   }
 }
 
+// for: DELETE_TODO
+const removeById = (state = [], id) => {
+  const todos = state.filter(todo => todo.id !== id);
+  console.log('new reduced todos:', todos);
+  return todos;
+}
+
 const todos = (state = [], action) => {
   let todos = null;
   
   switch(action.type) {
     case ADD_TODO:
       todos = [...state, todo(action)];
-      console.log('todos as state', todos);
+      return todos;
+    case DELETE_TODO:
+      todos = removeById(state, action.id);
       return todos;
     default:
       return state;
