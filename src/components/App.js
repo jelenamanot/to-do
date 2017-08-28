@@ -44,7 +44,7 @@ class App extends Component {
 
               <div className="list-item">
                 <p>{todo.text}</p>
-                <div><em>{moment(new Date(todo.dueDate)).fromNow()}</em></div>
+                <p><em>{moment(new Date(todo.dueDate)).fromNow()}</em></p>
               </div>
 
               <div 
@@ -58,17 +58,8 @@ class App extends Component {
           );
         })
       }
-      {
-          this.props.todos.length >= 1 
-          ? 
-          <button
-            className="btn btn-danger"
-            onClick={ () => this.props.clearToDos() }
-          >
-            CLEAR ALL
-          </button>
-          : <p></p>
-      }
+      
+     
       </ul>
     );
   }
@@ -107,13 +98,19 @@ class App extends Component {
           >
             +
           </button>
+          </div>
 
           <section className="render-todos">
             { this.renderToDos() }
           </section>
-        </div>
 
-
+          <button
+            className="btn btn-danger"
+            onClick={ () => this.props.clearToDos() }
+          >
+            CLEAR ALL
+          </button>
+        
       </div>
     );
   }
