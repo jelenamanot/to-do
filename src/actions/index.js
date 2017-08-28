@@ -1,10 +1,11 @@
 import { ADD_TODO, DELETE_TODO, CLEAR_TODOS } from '../constants';
 
 // ------ ADD TO DO  ------
-export const addToDo = (text) => {
+export const addToDo = (text, dueDate) => {
   const action = {
     type: ADD_TODO,
-    text
+    text,
+    dueDate
   }
   return action;
 }

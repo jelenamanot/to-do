@@ -2,24 +2,26 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addToDo, deleteToDo, clearToDos } from '../actions';
 
+import moment from 'moment';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      text: ''
+      text: '',
+      dueDate: ''
     }
   }
 
 
   // -------- actions/index.js --------
   addToDo() {
-    if(this.state.text === '') {
+    if(this.state.text === '' || this.state.dueDate === '') {
       alert('Please fill in the form completely.')
     }
     else {
-      this.props.addToDo(this.state.text);
+      this.props.addToDo(this.state.text, this.state.dueDate);
       document.getElementById('main-input').value = '';
     }
   }
@@ -41,7 +43,8 @@ class App extends Component {
             <li key={todo.id} className="list-group-item li-todo">
 
               <div className="list-item">
-                {todo.text}
+                <p>{todo.text}</p>
+                <div><em>{moment(new Date(todo.dueDate)).fromNow()}</em></div>
               </div>
 
               <div 
@@ -89,6 +92,12 @@ class App extends Component {
                   }
                 }
               }
+            />
+            <h3>and when? </h3>    
+            <input
+              className="form-control input-style"
+              type="datetime-local"
+              onChange = { event => this.setState({ dueDate: event.target.value })}
             />
           </div>
 

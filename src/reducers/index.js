@@ -3,6 +3,7 @@ import { ADD_TODO, DELETE_TODO, CLEAR_TODOS } from '../constants';
 const todo = (action) => {
   return {
     text: action.text,
+    dueDate: action.dueDate,
     id: Math.random()
   }
 }
