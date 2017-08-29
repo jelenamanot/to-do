@@ -67,49 +67,55 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h3>What you have to do?</h3>
-
-        <div className="form todo-form">
-          <div className="form-group">
-            <input 
-              id="main-input"
-              className="form-control input-style"
-              placeholder="I have to..."
-              onChange={ event => this.setState({ text: event.target.value })}
-              onKeyPress = {
-                event => {
-                  if(event.key === 'Enter') {
-                    this.addToDo();
-                  }
+       
+        <form className="form-group">
+          <label className="title" htmlFor="main-input">What you have to do?</label>
+          <input 
+            id="main-input"
+            className="form-control input-style"
+            placeholder="I have to..."
+            onChange={ event => this.setState({ text: event.target.value })}
+            onKeyPress = {
+              event => {
+                if(event.key === 'Enter') {
+                  this.addToDo();
                 }
               }
-            />
-            <h3>and when? </h3>    
-            <input
-              className="form-control input-style"
-              type="datetime-local"
-              onChange = { event => this.setState({ dueDate: event.target.value })}
-            />
-          </div>
+            }
+          />
+          <label className="title" htmlFor="date-input">and when? </label>    
+          <input
+            id="date-input"
+            className="form-control input-style"
+            type="datetime-local"
+            onChange = { event => this.setState({ dueDate: event.target.value })}
+          />
 
           <button
+            type="submit"
             className="btn-add"
             onClick={ () => this.addToDo() }
           >
             +
           </button>
-          </div>
+        </form> 
 
-          <section className="render-todos">
-            { this.renderToDos() }
-          </section>
-
-          <button
-            className="btn btn-danger"
-            onClick={ () => this.props.clearToDos() }
+        <section className="render-todos">
+          { this.renderToDos() }
+        </section>
+          
+        {
+          this.props.todos.length >= 1
+          ? 
+          <button 
+            type="submit"
+            className="btn-add btn-remove"
+            onClick={ () => this.props.clearToDos()}
           >
-            CLEAR ALL
+            &#x2715;
           </button>
+          : <p></p>
+        }
         
       </div>
     );
