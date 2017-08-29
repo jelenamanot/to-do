@@ -22,7 +22,6 @@ class App extends Component {
     }
     else {
       this.props.addToDo(this.state.text, this.state.dueDate);
-      document.getElementById('main-input').value = '';
     }
   }
 
